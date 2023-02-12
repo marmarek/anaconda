@@ -352,7 +352,7 @@ class AutomaticPartitioningTaskTestCase(unittest.TestCase):
         assert not any(spec for spec in requests if spec.fstype == "swap")
 
         # Test Case: Swap, hibernation
-        mocked_config.storage.default_partitioning = [
+        mocked_config.storage.get_default_partitioning.return_value = [
             {
                 'name': '/',
                 'size': Size("50 GiB"),
@@ -395,7 +395,7 @@ class AutomaticPartitioningTaskTestCase(unittest.TestCase):
         platform.partitions = []
 
         # Set the default partitioning.
-        mocked_conf.storage.default_partitioning = [
+        mocked_conf.storage.get_default_partitioning.return_value = [
             {
                 'name': '/',
                 'size': Size("50 GiB"),
